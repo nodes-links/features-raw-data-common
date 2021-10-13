@@ -1,1 +1,1 @@
-{"version":3,"file":"IPrimaveraColumn.js","sourceRoot":"","sources":["../../interfaces/IPrimaveraColumn.ts"],"names":[],"mappings":""}
+{"version":3,"file":"IPrimaveraColumn.js","sourceRoot":"","sources":["../../interfaces/IPrimaveraColumn.ts"],"names":[],"mappings":"","sourcesContent":["export interface IPrimaveraColumn {\n  key: string;\n  label: string;\n  filter: number | string | Date;\n  isTaskId: boolean;\n  type: string;\n  allowFiltering: boolean;\n  isName: boolean;\n}\n"]}

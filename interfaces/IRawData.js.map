@@ -1,1 +1,1 @@
-{"version":3,"file":"IRawData.js","sourceRoot":"","sources":["../../interfaces/IRawData.ts"],"names":[],"mappings":""}
+{"version":3,"file":"IRawData.js","sourceRoot":"","sources":["../../interfaces/IRawData.ts"],"names":[],"mappings":"","sourcesContent":["import { ID } from '@datorama/akita';\n\nexport interface IRawData {\n  versionRef: ID;\n  status: string;\n  data: Array<any>;\n  error?: string;\n}\n"]}

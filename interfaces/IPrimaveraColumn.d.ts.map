@@ -1,0 +1,1 @@
+{"version":3,"file":"IPrimaveraColumn.d.ts","sourceRoot":"","sources":["../../interfaces/IPrimaveraColumn.ts"],"names":[],"mappings":"AAAA,MAAM,WAAW,gBAAgB;IAC/B,GAAG,EAAE,MAAM,CAAC;IACZ,KAAK,EAAE,MAAM,CAAC;IACd,MAAM,EAAE,MAAM,GAAG,MAAM,GAAG,IAAI,CAAC;IAC/B,QAAQ,EAAE,OAAO,CAAC;IAClB,IAAI,EAAE,MAAM,CAAC;IACb,cAAc,EAAE,OAAO,CAAC;IACxB,MAAM,EAAE,OAAO,CAAC;CACjB"}

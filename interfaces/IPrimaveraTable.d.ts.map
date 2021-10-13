@@ -1,0 +1,1 @@
+{"version":3,"file":"IPrimaveraTable.d.ts","sourceRoot":"","sources":["../../interfaces/IPrimaveraTable.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,gBAAgB,EAAE,MAAM,oBAAoB,CAAC;AAEtD,MAAM,WAAW,eAAe;IAC9B,GAAG,EAAE,MAAM,CAAC;IACZ,KAAK,EAAE,MAAM,CAAC;IACd,OAAO,EAAE,KAAK,CAAC,gBAAgB,CAAC,CAAC;CAClC"}

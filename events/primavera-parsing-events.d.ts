@@ -41,3 +41,4 @@ export declare class PrimaveraParsingCommonEvents {
         title: string;
     }>;
 }
+//# sourceMappingURL=primavera-parsing-events.d.ts.map

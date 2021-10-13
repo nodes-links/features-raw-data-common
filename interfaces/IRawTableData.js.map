@@ -1,1 +1,1 @@
-{"version":3,"file":"IRawTableData.js","sourceRoot":"","sources":["../../interfaces/IRawTableData.ts"],"names":[],"mappings":""}
+{"version":3,"file":"IRawTableData.js","sourceRoot":"","sources":["../../interfaces/IRawTableData.ts"],"names":[],"mappings":"","sourcesContent":["export interface IRawTableData {\n  title: string;\n  settings: {\n    colHeaders: Array<string>;\n    data: Array<any>;\n  };\n}\n"]}

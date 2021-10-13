@@ -5,3 +5,4 @@ export interface IRawTableData {
         data: Array<any>;
     };
 }
+//# sourceMappingURL=IRawTableData.d.ts.map

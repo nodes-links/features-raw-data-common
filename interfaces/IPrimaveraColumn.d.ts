@@ -7,3 +7,4 @@ export interface IPrimaveraColumn {
     allowFiltering: boolean;
     isName: boolean;
 }
+//# sourceMappingURL=IPrimaveraColumn.d.ts.map

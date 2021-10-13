@@ -1,0 +1,2 @@
+export declare const getS3JsonPromise: (filename: string, filteredData: any[], bucketRegion: string, bucket: string, folder: string, tags: string) => Promise<any>;
+//# sourceMappingURL=data-to-s3-json-filtered.d.ts.map

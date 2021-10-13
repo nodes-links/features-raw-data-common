@@ -14,7 +14,11 @@ export declare class RawDataCommonEvents {
      * @type {Subject<IPrimaveraTask[]>}
      * @memberof RawDataCommonEvents
      */
-    tasksDiscovered: Subject<IPrimaveraTask[]>;
+    tasksDiscovered: Subject<{
+        versionRef?: any;
+        tasks: IPrimaveraTask[];
+        current: boolean;
+    }>;
     /**
      * This is triggered when an edge (i.e. relationship between two tasks) is discovered in the raw data.
      *
@@ -22,11 +26,15 @@ export declare class RawDataCommonEvents {
      * @memberof RawDataCommonEvents
      */
     edgesDiscovered: Subject<{
-        sourceId: string;
-        targetId: string;
-        lag: number;
-        type: string;
-    }[]>;
+        versionRef?: any;
+        edges: {
+            sourceId: string;
+            targetId: string;
+            lag: number;
+            type: string;
+        }[];
+        current: boolean;
+    }>;
     /**
      * This is triggered by the primavera parsing service right before it starts processing the results.
      *
@@ -40,5 +48,29 @@ export declare class RawDataCommonEvents {
      * @type {Subject<void>}
      * @memberof RawDataCommonEvents
      */
-    processingResultsCompleted: Subject<void>;
+    processingResultsCompleted: Subject<{
+        versionRef?: any;
+        rawData: any;
+        processingPerformed: boolean;
+    }>;
+    /**
+     * This is triggered when the current version is changing
+     *
+     * @type {Subject<void>}
+     * @memberof RawDataCommonEvents
+     */
+    currentVersionChanging: Subject<{
+        versionRef?: any;
+    }>;
+    /**
+     * This is triggered when a new version is initialized
+     *
+     * @type {Subject<void>}
+     * @memberof RawDataCommonEvents
+     */
+    initialized: Subject<{
+        versionRef?: any;
+        current?: boolean;
+    }>;
 }
+//# sourceMappingURL=raw-data-events.d.ts.map

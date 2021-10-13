@@ -1,1 +1,1 @@
-{"version":3,"file":"papa-results.js","sourceRoot":"","sources":["../../interfaces/papa-results.ts"],"names":[],"mappings":""}
+{"version":3,"file":"papa-results.js","sourceRoot":"","sources":["../../interfaces/papa-results.ts"],"names":[],"mappings":"","sourcesContent":["export interface IPapaResults {\n  data: Array<Array<number | string | boolean>>;\n}\n"]}

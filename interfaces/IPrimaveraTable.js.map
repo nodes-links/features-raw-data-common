@@ -1,1 +1,1 @@
-{"version":3,"file":"IPrimaveraTable.js","sourceRoot":"","sources":["../../interfaces/IPrimaveraTable.ts"],"names":[],"mappings":""}
+{"version":3,"file":"IPrimaveraTable.js","sourceRoot":"","sources":["../../interfaces/IPrimaveraTable.ts"],"names":[],"mappings":"","sourcesContent":["import { IPrimaveraColumn } from './IPrimaveraColumn';\n\nexport interface IPrimaveraTable {\n  key: string;\n  label: string;\n  columns: Array<IPrimaveraColumn>;\n}\n"]}

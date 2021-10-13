@@ -1,8 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ZipCommonService = void 0;
 const tslib_1 = require("tslib");
-const Papa = tslib_1.__importStar(require("papaparse"));
-const _ = tslib_1.__importStar(require("lodash"));
+const Papa = require("papaparse");
+const _ = require("lodash");
+const operators_1 = require("rxjs/operators");
 const JSZip = require('jszip');
 /**
  *
@@ -27,37 +29,43 @@ class ZipCommonService {
      * @param {boolean} removeNames
      * @param {boolean} [useNlSuffix=false]
      * @param {string} [resultType='blob']
+     * @param {boolean} current whether to get current version and ignore versionRef
      * @returns {Promise<Blob>}
      * @memberof ZipCommonService
      */
-    generateZip(removeNames, useNlSuffix = false, resultType = 'blob') {
+    generateZip(versionRef, removeNames, useNlSuffix = false, resultType = 'blob') {
         return tslib_1.__awaiter(this, void 0, void 0, function* () {
             return new Promise((resolve, reject) => tslib_1.__awaiter(this, void 0, void 0, function* () {
                 try {
                     const tables = yield this.tableConfig.tables;
                     const zip = new JSZip();
-                    for (let i = 0; i < this.rawDataService.data.length; i++) {
-                        const table = this.rawDataService.data[i];
-                        const tableConfig = _.find(tables, (t) => t.key == table.title);
-                        let tableAsString = '';
-                        if (!removeNames || !tableConfig || _.every(tableConfig.columns, col => !col.isName))
-                            tableAsString = Papa.unparse(table.settings.data);
-                        else {
-                            const masked = [];
-                            const mask = {};
-                            _.filter(tableConfig.columns, col => col.isName).forEach(col => {
-                                mask[col.key] = '';
-                            });
-                            for (let j = 0; j < table.settings.data.length; j++) {
-                                const el = table.settings.data[j];
-                                masked.push(_.assign({}, el, mask));
+                    this.rawDataService
+                        .for(versionRef)
+                        .pipe(operators_1.first())
+                        .subscribe(({ raw }) => tslib_1.__awaiter(this, void 0, void 0, function* () {
+                        for (let i = 0; i < raw.length; i++) {
+                            const table = raw[i];
+                            const tableConfig = _.find(tables, (t) => t.key === table.title);
+                            let tableAsString = '';
+                            if (!removeNames || !tableConfig || _.every(tableConfig.columns, col => !col.isName))
+                                tableAsString = Papa.unparse(table.settings.data);
+                            else {
+                                const masked = [];
+                                const mask = {};
+                                _.filter(tableConfig.columns, col => col.isName).forEach(col => {
+                                    mask[col.key] = '';
+                                });
+                                for (let j = 0; j < table.settings.data.length; j++) {
+                                    const el = table.settings.data[j];
+                                    masked.push(_.assign({}, el, mask));
+                                }
+                                tableAsString = Papa.unparse(masked);
                             }
-                            tableAsString = Papa.unparse(masked);
+                            zip.file(`${raw[i].title}${tableConfig && useNlSuffix ? '_NL' : ''}.csv`, tableAsString);
                         }
-                        zip.file(`${this.rawDataService.data[i].title}${tableConfig && useNlSuffix ? '_NL' : ''}.csv`, tableAsString);
-                    }
-                    const content = yield zip.generateAsync({ type: resultType });
-                    resolve(content);
+                        const content = yield zip.generateAsync({ type: resultType });
+                        resolve(content);
+                    }));
                 }
                 catch (error) {
                     reject(error);

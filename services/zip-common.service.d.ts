@@ -22,8 +22,10 @@ export declare class ZipCommonService {
      * @param {boolean} removeNames
      * @param {boolean} [useNlSuffix=false]
      * @param {string} [resultType='blob']
+     * @param {boolean} current whether to get current version and ignore versionRef
      * @returns {Promise<Blob>}
      * @memberof ZipCommonService
      */
-    generateZip(removeNames: boolean, useNlSuffix?: boolean, resultType?: string): Promise<any>;
+    generateZip(versionRef: any, removeNames: boolean, useNlSuffix?: boolean, resultType?: string): Promise<any>;
 }
+//# sourceMappingURL=zip-common.service.d.ts.map

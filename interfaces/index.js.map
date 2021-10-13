@@ -1,1 +1,1 @@
-{"version":3,"file":"index.js","sourceRoot":"","sources":["../../interfaces/index.ts"],"names":[],"mappings":""}
+{"version":3,"file":"index.js","sourceRoot":"","sources":["../../interfaces/index.ts"],"names":[],"mappings":";;;AAAA,yDAA+B;AAC/B,6DAAmC;AACnC,4DAAkC;AAClC,2DAAiC;AACjC,0DAAgC;AAChC,qDAA2B","sourcesContent":["export * from './papa-results';\nexport * from './IPrimaveraColumn';\nexport * from './IPrimaveraTable';\nexport * from './IPrimaveraTask';\nexport * from './IRawTableData';\nexport * from './IRawData';\n"]}

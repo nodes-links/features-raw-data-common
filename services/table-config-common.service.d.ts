@@ -25,3 +25,4 @@ export declare class TableConfigCommonService {
     tables: Promise<Array<IPrimaveraTable>>;
     constructor();
 }
+//# sourceMappingURL=table-config-common.service.d.ts.map

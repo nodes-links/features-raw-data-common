@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sourceRoot":"","sources":["../../aws/index.ts"],"names":[],"mappings":";;;AAAA,qEAA2C","sourcesContent":["export * from './data-to-s3-json-filtered';\r\n"]}

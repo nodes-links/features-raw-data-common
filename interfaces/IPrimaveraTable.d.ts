@@ -4,3 +4,4 @@ export interface IPrimaveraTable {
     label: string;
     columns: Array<IPrimaveraColumn>;
 }
+//# sourceMappingURL=IPrimaveraTable.d.ts.map

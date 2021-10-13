@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.PrimaveraParsingCommonService = void 0;
 /**
  * This service is responsible for converting the result produced by the (XER -> arrays) parsing process
  * into raw/tabular-friendly and graph-friendly formats and emitting it to the corresponding services.
@@ -8,16 +9,10 @@ class PrimaveraParsingCommonService {
     /**
      * Creates an instance of PrimaveraParsingCommonService.
      *
-     * @param {PrimaveraParsingCommonEvents} primaveraEvents This is used for other services/components to trigger the event which tells this
-     * service to start processing, and it is also used by this service to emit events that other services/components can
-     * subscribe to.
-     * @param {RawDataCommonEvents} rawDataEvents
      * @memberof PrimaveraParsingCommonService
      */
-    constructor(primaveraEvents, rawDataEvents) {
-        this.primaveraEvents = primaveraEvents;
-        this.rawDataEvents = rawDataEvents;
-        this.primaveraEvents.parsingResultsStarted.subscribe(results => this.parseResults(results));
+    constructor(_rawData) {
+        this._rawData = _rawData;
     }
     /**
      * Each row is processed in sequence and the tables/headers/rows are extracted. For examples of a primavera files see
@@ -29,7 +24,7 @@ class PrimaveraParsingCommonService {
         try {
             let index = -1;
             let headers = [];
-            this.rawDataEvents.initializing.next();
+            this._rawData.startRawDataIngestion();
             let foundDataRow = false;
             results.data.forEach(row => {
                 const rowType = row[0];
@@ -49,10 +44,10 @@ class PrimaveraParsingCommonService {
             });
             if (!foundDataRow)
                 throw new Error('No project data present in the XER');
-            this.primaveraEvents.parsingResultsCompleted.next({});
+            this._rawData.finishRawDataIngestion();
         }
         catch (error) {
-            this.primaveraEvents.parsingResultsCompleted.next({ error });
+            throw error;
         }
     }
     /**
@@ -66,7 +61,7 @@ class PrimaveraParsingCommonService {
         for (let i = 0; i < headers.length; i++) {
             newRow[headers[i]] = row[i + 1];
         }
-        this.primaveraEvents.rowDiscovered.next({ tableIndex: index, row: newRow });
+        this._rawData.addRow(index, newRow);
     }
     /**
      * Processes the header row for the table at the given index.
@@ -75,7 +70,7 @@ class PrimaveraParsingCommonService {
      */
     processHeaderRow(row, index) {
         const headers = row.slice(1);
-        this.primaveraEvents.headersDiscovered.next({ tableIndex: index, headers: headers });
+        this._rawData.addHeaders(index, headers);
         return headers;
     }
     /**
@@ -85,7 +80,7 @@ class PrimaveraParsingCommonService {
      */
     processTableRow(index, row) {
         const title = row[1];
-        this.primaveraEvents.tableDiscovered.next({ tableIndex: index, title: title });
+        this._rawData.addTable(index, title);
     }
 }
 exports.PrimaveraParsingCommonService = PrimaveraParsingCommonService;
