@@ -10,7 +10,7 @@
   "types": "index.d.ts",
   "main": "index.js",
   "scripts": {
-    "pull-origin": "git init && git remote add origin https://github.com/nodes-links/features-raw-data-common.git && git fetch && git checkout -f master",
+    "pull-origin": "git init && git remote add origin https://github.com/nodes-links/features-raw-data-common.git && git fetch && git checkout -f master && rm -rf .git",
     "prepare-out": "rm -rf .\\out && mkdir .\\out",
     "copy-package-json": "copy .\\package.json .\\out\\package.json",
     "copy-license": "copy .\\LICENSE .\\out\\LICENSE",
