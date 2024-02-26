@@ -11,15 +11,15 @@
   "main": "index.js",
   "scripts": {
     "pull-origin": "git init && git remote add origin https://github.com/nodes-links/features-raw-data-common.git && git fetch && git checkout -f master && rm -rf .git",
-    "prepare-out": "rm -rf .\\out && mkdir .\\out",
+    "prepare-out": "rm -rf ./out && mkdir ./out",
     "copy-package-json": "nl-dev copy ./package.json ./out/package.json",
     "copy-license": "nl-dev copy ./LICENSE ./out/LICENSE",
     "build": "tsc --project tsconfig.json && npm run copy-package-json",
-    "publish": "nl-dev copy .\\out\\* %MONO_PATH%\\node_modules\\@nodes-links\\features-raw-data-common /i/y/e/d",
-    "build-and-publish": "npm run prepare-out && npm run copy-package-json && npm run copy-license && cd .\\out && npm run pull-origin && cd .. && npm run build && npm run publish",
-    "install-in-layer": "nl-dev copy .\\out\\* %MONO_PATH%\\libs\\arch\\lambda\\layer\\src\\lib\\out\\dist\\layer-code\\nodejs\\nodejs\\node_modules\\@nodes-links\\features-raw-data-common\\ /i/y/e/d",
+    "publish": "nl-dev copy ./out/ %MONO_PATH%/node_modules/@nodes-links/features-raw-data-common /i/y/e/d",
+    "build-and-publish": "npm run prepare-out && npm run copy-package-json && npm run copy-license && cd ./out && npm run pull-origin && cd .. && npm run build && npm run publish",
+    "install-in-layer": "nl-dev copy ./out/ %MONO_PATH%/libs/arch/lambda/layer/src/lib/out/dist/layer-code/nodejs/nodejs/node_modules/@nodes-links/features-raw-data-common/ /i/y/e/d",
     "push-origin": "git add . && git commit -m \"Add new version\" && git push origin master",
-    "publish-and-push-origin": "npm run build-and-publish && cd .\\out && npm run push-origin"
+    "publish-and-push-origin": "npm run build-and-publish && cd ./out && npm run push-origin"
   },
   "homepage": "https://github.com/nodes-links/features-raw-data-common",
   "repository": "https://github.com/nodes-links/features-raw-data-common",
